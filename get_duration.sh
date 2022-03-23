@@ -2,15 +2,15 @@
 #
 # This repository calculates the total (and for each file) length of the audio files in the same folder.
 # Requires: soxi
-# Run: ./get_duration.sh my_audio_folder_path *.wav log.txt
+# Run: ./get_duration.sh my_audio_folder_path .wav log.txt
 
 if [[ $# -ne 3 ]]; then
-    echo "Please set 3 parameters: source_folder *.extension output_logfile"
+    echo "Please set 3 parameters: source_folder .extension output_logfile"
     exit 2
 fi
 
 dir=$1
-#extension=*.wav
+#extension=.wav
 extension=$2
 outputfile=$3
 rm $outputfile
@@ -25,7 +25,7 @@ while read -r f; do
     d=$(soxi -D "$f")
     echo "$d seconds - $f" >> $outputfile
     total=$(echo "$total + $d" | bc)
-done < <(find "$dir" -iname "$extension" | sort -R)
+done < <(find "$dir" -iname "*$extension" | sort -R)
 
 div=3600
 hours=$(awk '{print $1/$2}' <<<"${total} ${div}")
