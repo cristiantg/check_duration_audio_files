@@ -13,7 +13,7 @@ dir=$1
 #extension=.wav
 extension=$2
 outputfile=$3
-rm $outputfile
+rm -f $outputfile
 
 ######################## MAIN
 files=$(echo `ls -lt $dir | wc -l`)
