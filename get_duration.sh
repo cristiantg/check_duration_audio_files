@@ -1,11 +1,13 @@
 #!/bin/bash
 #
 # This repository calculates the total (and for each file) length of the audio files in the same folder.
-# Requires: soxi
-# Run: ./get_duration.sh my_audio_folder_path .wav log.txt
+# Requires: soxi, bc
+#
+# Run: nohup time ./get_duration.sh my_audio_folder_full_path .wav log.txt > warnings.txt &
 
 if [[ $# -ne 3 ]]; then
-    echo "Please set 3 parameters: source_folder .extension output_logfile"
+    echo "Please set 3 parameters: source_folder_full_path *.extension output_logfile"
+    echo "Example: nohup time ./get_duration.sh /vol/tensusers5/XX/YY/audio/words/segments *.wav log.txt > warnings.txt &"
     exit 2
 fi
 
